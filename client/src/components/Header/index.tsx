@@ -1,20 +1,22 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
-type Props = {
+interface Props {
   children: React.ReactNode;
-};
+}
 
-export const Header: FC<Props> = ({ children }) => (
-  <>
-    <Wrapper>
-      <ContentsRow>
-        <Logo>Photo Repo</Logo>
-        <Contents>{children}</Contents>
-      </ContentsRow>
-    </Wrapper>
-  </>
-);
+export const Header = (props: Props): JSX.Element => {
+  return (
+    <>
+      <Wrapper>
+        <ContentsRow>
+          <Logo>Photo Repo</Logo>
+          <Contents>{props.children}</Contents>
+        </ContentsRow>
+      </Wrapper>
+    </>
+  );
+};
 
 const Wrapper = styled.div`
   height: 3em;
