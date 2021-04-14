@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import styled from "styled-components";
+import { TopPage } from "../src/containers/TopPage";
 import camera from "./assets/picture/IMG_2122.JPG";
 
 const Header = styled.div`
@@ -26,9 +27,10 @@ function App(): JSX.Element {
   return (
     <div>
       <Header />
-      <Wrapper></Wrapper>
+      <Wrapper>
+        <TopPage />
+      </Wrapper>
       <Footer />
-      <img src={camera} width="200px" height="200px"></img>
     </div>
   );
 }
