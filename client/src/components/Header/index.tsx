@@ -38,5 +38,11 @@ const Logo = styled.div`
 `;
 
 const Contents = styled.div`
-  margin: 10px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  padding: 10px;
+  > * {
+    margin: 10px;
+  }
 `;
