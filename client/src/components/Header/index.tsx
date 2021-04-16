@@ -1,17 +1,17 @@
-import React, { FC } from "react";
+import React from "react";
 import styled from "styled-components";
+import { Button } from "../../components/atom/Button";
 
-interface Props {
-  children: React.ReactNode;
-}
-
-export const Header = (props: Props): JSX.Element => {
+export const Header = (): JSX.Element => {
   return (
     <>
       <Wrapper>
         <ContentsRow>
           <Logo>Photo Repo</Logo>
-          <Contents>{props.children}</Contents>
+          <Contents>
+            <Button>Photo</Button>
+            <Button>Draw</Button>
+          </Contents>
         </ContentsRow>
       </Wrapper>
     </>
