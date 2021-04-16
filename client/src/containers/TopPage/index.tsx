@@ -1,22 +1,32 @@
 import React from "react";
 import { Header } from "../../components/Header";
+import { Card } from "../../components/atom/Card";
+import { CardMedia } from "../../components/atom/CardMedia";
+import { CardContent } from "../../components/atom/CardContent";
 import styled from "styled-components";
+import camera from "../../assets/picture/IMG_2122.JPG";
 
 export const TopPage = (): JSX.Element => {
   return (
     <>
       <Header></Header>
-      <Wraper></Wraper>
+      <ContentWrapper>
+        <Card>
+          <CardMedia src={camera} />
+          <CardContent>The Coldest Sunset</CardContent>
+        </Card>
+      </ContentWrapper>
     </>
   );
 };
 
-const Wraper = styled.div`
-  display: flex;
-  flex: auto 1 1;
-  flex-flow: column nowrap;
+const ContentWrapper = styled.div`
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(3, 33%);
+  grid-row-gap: 10px;
+  grid-column-gap: 15px;
   margin: 0 auto;
-  padding: 0 20px;
-  width: 600px;
-  max-width: 100%;
+  padding-top: 20px;
+  width: 900px;
 `;
