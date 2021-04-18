@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Header } from "../../components/Header";
 import { Card } from "../../components/atom/Card";
 import { CardMedia } from "../../components/atom/CardMedia";
@@ -7,6 +7,7 @@ import styled from "styled-components";
 import camera from "../../assets/picture/IMG_2122.JPG";
 
 export const TopPage = (): JSX.Element => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <>
       <Header></Header>
