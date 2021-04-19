@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Button } from "../../components/atom/Button";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Modal } from "../../components/atom/Modal";
 
 export const Header = (): JSX.Element => {
@@ -16,7 +18,20 @@ export const Header = (): JSX.Element => {
             {isOpen && (
               <Modal>
                 <ModalOverLay>
-                  <ModalContent>aa</ModalContent>
+                  <ModalContent>
+                    <ModalHeader>
+                      <CloseButton>
+                        <FontAwesomeIcon
+                          icon={faTimes}
+                          size="lg"
+                        ></FontAwesomeIcon>
+                      </CloseButton>
+                    </ModalHeader>
+                    <ModalBody></ModalBody>
+                    <ModalFooter>
+                      <Button>Upload</Button>
+                    </ModalFooter>
+                  </ModalContent>
                 </ModalOverLay>
               </Modal>
             )}
@@ -69,8 +84,8 @@ const ModalOverLay = styled.div`
 const ModalContent = styled.div`
   position: absolute;
   top: 5%;
-  left: 10%;
-  right: 10%;
+  left: 20%;
+  right: 20%;
   bottom: 5%;
   border: 1px solid #ccc;
   background: #fff;
@@ -78,4 +93,27 @@ const ModalContent = styled.div`
   border-radius: 4px;
   outline: none;
   padding: 20px;
+`;
+
+const ModalHeader = styled.div`
+  height: 10%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: start;
+`;
+
+const ModalBody = styled.div`
+  height: 80%;
+  background: grey;
+`;
+
+const ModalFooter = styled.div`
+  height: 10%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+const CloseButton = styled.button`
+  color: inherit;
 `;
