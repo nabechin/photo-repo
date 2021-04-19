@@ -2,7 +2,6 @@ import React from "react";
 import "./App.css";
 import styled from "styled-components";
 import { TopPage } from "../src/containers/TopPage";
-import camera from "./assets/picture/IMG_2122.JPG";
 
 const Header = styled.div`
   flex: auto;
