@@ -1,5 +1,5 @@
 import React from "react";
-import { Header } from "../../components/Header";
+import { Header } from "../../components/organisms/Header";
 import { Card } from "../../components/atom/Card";
 import { CardMedia } from "../../components/atom/CardMedia";
 import { CardContent } from "../../components/atom/CardContent";
