@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Button } from "../../atom/Button";
-import Dropzone from "react-dropzone";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Modal } from "../../atom/Modal";
 import { ImageDrop } from "../../atom/ImageDrop";
+import { useModal } from "../../../hooks/useModal";
 
 export const Header = (): JSX.Element => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-
+  const { isOpen, setIsOpen } = useModal();
   return (
     <>
       <Wrapper>
@@ -20,8 +19,12 @@ export const Header = (): JSX.Element => {
             <Button onClick={() => setIsOpen(true)}>Draw</Button>
             {isOpen && (
               <Modal>
-                <ModalOverLay>
-                  <ModalContent>
+                <ModalOverLay onClick={() => setIsOpen(false)}>
+                  <ModalContent
+                    onClick={(e: React.MouseEvent<HTMLInputElement>) =>
+                      e.stopPropagation()
+                    }
+                  >
                     <ModalHeader>
                       <CloseButton onClick={() => setIsOpen(false)}>
                         <FontAwesomeIcon
