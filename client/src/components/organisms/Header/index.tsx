@@ -1,14 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Button } from "../../atom/Button";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Modal } from "../../atom/Modal";
+import { ModalWrapper } from "../../organisms/ModalWrapper";
 import { ImageDrop } from "../../atom/ImageDrop";
-import { useModal } from "../../../hooks/useModal";
 
 export const Header = (): JSX.Element => {
-  const { isOpen, setIsOpen } = useModal();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <>
       <Wrapper>
@@ -17,32 +14,9 @@ export const Header = (): JSX.Element => {
           <Contents>
             <Button onClick={() => setIsOpen(true)}>Photo</Button>
             <Button onClick={() => setIsOpen(true)}>Draw</Button>
-            {isOpen && (
-              <Modal>
-                <ModalOverLay onClick={() => setIsOpen(false)}>
-                  <ModalContent
-                    onClick={(e: React.MouseEvent<HTMLInputElement>) =>
-                      e.stopPropagation()
-                    }
-                  >
-                    <ModalHeader>
-                      <CloseButton onClick={() => setIsOpen(false)}>
-                        <FontAwesomeIcon
-                          icon={faTimes}
-                          size="lg"
-                        ></FontAwesomeIcon>
-                      </CloseButton>
-                    </ModalHeader>
-                    <ModalBody>
-                      <ImageDrop></ImageDrop>
-                    </ModalBody>
-                    <ModalFooter>
-                      <Button>Upload</Button>
-                    </ModalFooter>
-                  </ModalContent>
-                </ModalOverLay>
-              </Modal>
-            )}
+            <ModalWrapper isOpen={isOpen} setIsOpen={setIsOpen}>
+              <ImageDrop />
+            </ModalWrapper>
           </Contents>
         </ContentsRow>
       </Wrapper>
@@ -77,50 +51,4 @@ const Contents = styled.div`
   > * {
     margin: 10px;
   }
-`;
-
-const ModalOverLay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.2);
-  z-index: 99;
-`;
-
-const ModalContent = styled.div`
-  position: absolute;
-  top: 5%;
-  left: 20%;
-  right: 20%;
-  bottom: 5%;
-  border: 1px solid #ccc;
-  background: #fff;
-  overflow: auto;
-  border-radius: 4px;
-  outline: none;
-  padding: 20px;
-`;
-
-const ModalHeader = styled.div`
-  height: 10%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: start;
-`;
-
-const ModalBody = styled.div`
-  height: 80%;
-`;
-
-const ModalFooter = styled.div`
-  height: 10%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-`;
-
-const CloseButton = styled.button`
-  color: inherit;
 `;
