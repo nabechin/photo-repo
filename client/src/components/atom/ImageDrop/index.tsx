@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import Dropzone from "react-dropzone";
 import styled from "styled-components";
 
+interface FileWithPreview extends File {
+  preview: string;
+}
+
 export const ImageDrop = (): JSX.Element => {
-  const [files, setFiles] = useState<File[]>([]);
-  const onHandleDrop = (acceptedFiles: File[]) => {
+  const [files, setFiles] = useState<FileWithPreview[]>([]);
+  const onHandleDrop = (acceptedFiles: File[]): void => {
     if (acceptedFiles.length > 0) {
       setFiles(
         acceptedFiles.map((file) =>
@@ -16,6 +20,12 @@ export const ImageDrop = (): JSX.Element => {
     }
   };
 
+  const makePreview = (): JSX.Element[] => {
+    return files.map((file, i) => (
+      <img key={i} src={file.preview} height="200" width="200"></img>
+    ));
+  };
+
   return (
     <Dropzone onDrop={onHandleDrop}>
       {({ getRootProps, getInputProps }) => (
@@ -24,7 +34,7 @@ export const ImageDrop = (): JSX.Element => {
             <input {...getInputProps()} />
             <p>Drag drop some files here, or click to select files</p>
           </DragAndDropBox>
-          <div style={{ flexGrow: 1 }}>aaa</div>
+          <Preview>{makePreview()}</Preview>
         </Wrapper>
       )}
     </Dropzone>
@@ -37,11 +47,18 @@ const Wrapper = styled.div`
   justify-content: center;
   height: 100%;
   width: 100%;
+  > div {
+    margin: 10px;
+  }
 `;
 
 const DragAndDropBox = styled.div`
   border: solid 2px grey;
   border-radius: 5px;
   text-align: center;
-  flex-grow: 2;
+  height: 430px;
+`;
+
+const Preview = styled.div`
+  height: 200px;
 `;
