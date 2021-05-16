@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import Dropzone from "react-dropzone";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import Dropzone from 'react-dropzone';
+import styled from 'styled-components';
 
 interface FileWithPreview extends File {
   preview: string;

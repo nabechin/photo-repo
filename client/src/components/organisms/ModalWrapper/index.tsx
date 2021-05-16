@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import { Button } from "../../atom/Button";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Modal } from "../../atom/Modal";
+import React from 'react';
+import styled from 'styled-components';
+import { Button } from '../../atom/Button';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Modal } from '../../atom/Modal';
 
 interface Props {
   children: React.ReactNode;

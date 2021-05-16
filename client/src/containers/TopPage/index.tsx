@@ -1,10 +1,10 @@
-import React from "react";
-import { Header } from "../../components/organisms/Header";
-import { Card } from "../../components/atom/Card";
-import { CardMedia } from "../../components/atom/CardMedia";
-import { CardContent } from "../../components/atom/CardContent";
-import styled from "styled-components";
-import camera from "../../assets/picture/IMG_2122.JPG";
+import React, { useEffect } from 'react';
+import { Header } from '../../components/organisms/Header';
+import { Card } from '../../components/atom/Card';
+import { CardMedia } from '../../components/atom/CardMedia';
+import { CardContent } from '../../components/atom/CardContent';
+import styled from 'styled-components';
+import camera from '../../assets/picture/IMG_2122.JPG';
 
 export const TopPage = (): JSX.Element => {
   return (
