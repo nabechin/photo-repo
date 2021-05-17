@@ -1,7 +1,7 @@
-import React from "react";
-import "./App.css";
-import styled from "styled-components";
-import { TopPage } from "../src/containers/TopPage";
+import React from 'react';
+import './App.css';
+import styled from 'styled-components';
+import { TopPage } from '../src/containers/TopPage';
 
 const Header = styled.div`
   flex: auto;
