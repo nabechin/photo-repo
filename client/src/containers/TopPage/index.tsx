@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Header } from '../../components/organisms/Header';
 import { Card } from '../../components/atom/Card';
 import { CardMedia } from '../../components/atom/CardMedia';
@@ -12,7 +12,13 @@ const api_key = process.env.REACT_APP_X_API_KEY
   ? process.env.REACT_APP_X_API_KEY
   : '';
 
+interface Image {
+  id: number;
+  imageUrl: string;
+}
+
 export const TopPage = (): JSX.Element => {
+  const [images, setImages] = useState<Image[]>([]);
   useEffect(() => {
     fetch(url, {
       method: 'GET',
@@ -24,24 +30,26 @@ export const TopPage = (): JSX.Element => {
       .then((response) => {
         return response.json().then((data) => {
           if (response.ok) {
-            return data.Items;
+            return data.Items as Image[];
           } else {
             return Promise.reject({ status: response.status, data });
           }
         });
       })
-      .then((result) => console.log(result))
+      .then((result) => setImages(result))
       .catch((error) => console.log(error));
   });
+  const renderImage = (): JSX.Element[] =>
+    images.map((image) => (
+      <Card key={image.id}>
+        <CardMedia src={process.env.REACT_APP_S3_URL + image.imageUrl} />
+        <CardContent>The Coldest Sunset</CardContent>
+      </Card>
+    ));
   return (
     <>
       <Header></Header>
-      <ContentWrapper>
-        <Card>
-          <CardMedia src={camera} />
-          <CardContent>The Coldest Sunset</CardContent>
-        </Card>
-      </ContentWrapper>
+      <ContentWrapper>{renderImage()}</ContentWrapper>
     </>
   );
 };
