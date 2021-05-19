@@ -1,14 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from '../../atom/Button';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { Modal } from '../../atom/Modal';
 
 interface Props {
-  children: React.ReactNode;
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  children: React.ReactNode;
 }
 
 export const ModalWrapper = (props: Props): JSX.Element => {
@@ -22,15 +20,7 @@ export const ModalWrapper = (props: Props): JSX.Element => {
                 e.stopPropagation()
               }
             >
-              <ModalHeader>
-                <CloseButton onClick={() => props.setIsOpen(false)}>
-                  <FontAwesomeIcon icon={faTimes} size="lg"></FontAwesomeIcon>
-                </CloseButton>
-              </ModalHeader>
-              <ModalBody>{props.children}</ModalBody>
-              <ModalFooter>
-                <Button>Upload</Button>
-              </ModalFooter>
+              {props.children}
             </ModalContent>
           </ModalOverLay>
         </Modal>
@@ -61,26 +51,4 @@ const ModalContent = styled.div`
   border-radius: 4px;
   outline: none;
   padding: 20px;
-`;
-
-const ModalHeader = styled.div`
-  height: 10%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: start;
-`;
-
-const ModalBody = styled.div`
-  height: 80%;
-`;
-
-const ModalFooter = styled.div`
-  height: 10%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-`;
-
-const CloseButton = styled.button`
-  color: inherit;
 `;

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Button } from '../../atom/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { ModalWrapper } from '../../organisms/ModalWrapper';
 import { ImageDrop } from '../../atom/ImageDrop';
 
@@ -15,7 +17,17 @@ export const Header = (): JSX.Element => {
             <Button onClick={() => setIsOpen(true)}>Photo</Button>
             <Button onClick={() => setIsOpen(true)}>Draw</Button>
             <ModalWrapper isOpen={isOpen} setIsOpen={setIsOpen}>
-              <ImageDrop />
+              <ModalHeader>
+                <CloseButton onClick={() => setIsOpen(false)}>
+                  <FontAwesomeIcon icon={faTimes} size="lg"></FontAwesomeIcon>
+                </CloseButton>
+              </ModalHeader>
+              <ModalBody>
+                <ImageDrop />
+              </ModalBody>
+              <ModalFooter>
+                <Button>Upload</Button>
+              </ModalFooter>
             </ModalWrapper>
           </Contents>
         </ContentsRow>
@@ -51,4 +63,26 @@ const Contents = styled.div`
   > * {
     margin: 10px;
   }
+`;
+
+const CloseButton = styled.button`
+  color: inherit;
+`;
+
+const ModalHeader = styled.div`
+  height: 10%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: start;
+`;
+
+const ModalBody = styled.div`
+  height: 80%;
+`;
+
+const ModalFooter = styled.div`
+  height: 10%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 `;

@@ -22,7 +22,6 @@ export const TopPage = (): JSX.Element => {
   useEffect(() => {
     fetch(url, {
       method: 'GET',
-      mode: 'cors',
       headers: {
         'x-api-key': api_key,
       },
