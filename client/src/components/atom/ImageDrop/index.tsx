@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
 import Dropzone from 'react-dropzone';
 import styled from 'styled-components';
+import { useFile } from '../../../hooks/useFile';
 
 interface FileWithPreview extends File {
-  preview: string;
+  preview?: string;
 }
 
-export const ImageDrop = (): JSX.Element => {
-  const [files, setFiles] = useState<FileWithPreview[]>([]);
+interface Props {
+  files: FileWithPreview[];
+  setFiles: React.Dispatch<React.SetStateAction<FileWithPreview[]>>;
+}
+
+export const ImageDrop = (props: Props): JSX.Element => {
   const onHandleDrop = (acceptedFiles: File[]): void => {
     if (acceptedFiles.length > 0) {
-      setFiles(
+      props.setFiles(
         acceptedFiles.map((file) =>
           Object.assign(file, {
             preview: URL.createObjectURL(file),
@@ -21,7 +26,7 @@ export const ImageDrop = (): JSX.Element => {
   };
 
   const makePreview = (): JSX.Element[] => {
-    return files.map((file, i) => (
+    return props.files.map((file, i) => (
       <img key={i} src={file.preview} height="200" width="200"></img>
     ));
   };

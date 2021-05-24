@@ -4,13 +4,7 @@ import { Card } from '../../components/atom/Card';
 import { CardMedia } from '../../components/atom/CardMedia';
 import { CardContent } from '../../components/atom/CardContent';
 import styled from 'styled-components';
-import camera from '../../assets/picture/IMG_2122.JPG';
-
-const url = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : '';
-
-const api_key = process.env.REACT_APP_X_API_KEY
-  ? process.env.REACT_APP_X_API_KEY
-  : '';
+import { url, api_key } from '../../api';
 
 interface Image {
   id: number;

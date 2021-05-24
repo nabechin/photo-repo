@@ -5,9 +5,35 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { ModalWrapper } from '../../organisms/ModalWrapper';
 import { ImageDrop } from '../../atom/ImageDrop';
+import { url, api_key } from '../../../api';
+
+interface FileWithPreview extends File {
+  preview?: string;
+}
 
 export const Header = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [files, setFiles] = useState<FileWithPreview[]>([]);
+  const onHandleClick = () => {
+    files.map((file) => {
+      const reader = new FileReader();
+      reader.onload = uploadFile;
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const uploadFile = (readerEvt: ProgressEvent<FileReader>) => {
+    const base64BinaryImage = readerEvt.target?.result;
+    fetch('test', {
+      body: base64BinaryImage,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'image/jpeg',
+        'x-api-key': api_key,
+      },
+    });
+  };
+
   return (
     <>
       <Wrapper>
@@ -23,10 +49,10 @@ export const Header = (): JSX.Element => {
                 </CloseButton>
               </ModalHeader>
               <ModalBody>
-                <ImageDrop />
+                <ImageDrop files={files} setFiles={setFiles} />
               </ModalBody>
               <ModalFooter>
-                <Button>Upload</Button>
+                <Button onClick={() => onHandleClick()}>Upload</Button>
               </ModalFooter>
             </ModalWrapper>
           </Contents>
