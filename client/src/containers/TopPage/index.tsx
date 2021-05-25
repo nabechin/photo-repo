@@ -14,7 +14,7 @@ interface Image {
 export const TopPage = (): JSX.Element => {
   const [images, setImages] = useState<Image[]>([]);
   useEffect(() => {
-    fetch(url, {
+    fetch('test', {
       method: 'GET',
       headers: {
         'x-api-key': api_key,

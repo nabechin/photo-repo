@@ -16,16 +16,13 @@ export const Header = (): JSX.Element => {
   const [files, setFiles] = useState<FileWithPreview[]>([]);
   const onHandleClick = () => {
     files.map((file) => {
-      const reader = new FileReader();
-      reader.onload = uploadFile;
-      reader.readAsDataURL(file);
+      uploadFile(file);
     });
   };
 
-  const uploadFile = (readerEvt: ProgressEvent<FileReader>) => {
-    const base64BinaryImage = readerEvt.target?.result;
-    fetch('test', {
-      body: base64BinaryImage,
+  const uploadFile = (file: File) => {
+    fetch(url, {
+      body: file,
       method: 'POST',
       headers: {
         'Content-Type': 'image/jpeg',
